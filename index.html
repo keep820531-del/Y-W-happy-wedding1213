@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoshio & WeiTzu Wedding Invitation | 婚禮邀請函</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        champagne: {
+                            50: '#FAF8F5',
+                            100: '#F4EFEA',
+                            200: '#E6D9CE',
+                            300: '#D5C0B0',
+                            400: '#C2A590',
+                            500: '#B08E75',
+                            600: '#94725B',
+                            700: '#755845',
+                            800: '#5A4334',
+                            900: '#3D2D23',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Noto Serif TC', 'Noto Serif JP', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(25px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;400;600&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #2A2420 0%, #1F1B18 50%, #26211E 100%);
+            color: #E6D9CE;
+            font-family: 'Cormorant Garamond', 'Noto Serif TC', 'Noto Serif JP', serif;
+        }
+
+        /* Subtle Snowflake Canvas Layer */
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Dark Frosted Glassmorphism Styling */
+        .glass-panel {
+            background: rgba(35, 30, 27, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(213, 192, 176, 0.2);
+        }
+
+        .glass-panel-dark {
+            background: rgba(20, 17, 15, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(213, 192, 176, 0.15);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1715;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5A4334;
+            border-radius: 3px;
+        }
+
+        /* Infinite Marquee Loop for Gallery */
+        @keyframes scroll-infinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: scroll-infinite 50s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Smooth Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Audio Equalizer Visualizer */
+        .eq-bar {
+            width: 3px;
+            background-color: #D5C0B0;
+            border-radius: 3px;
+            animation: eq 1.2s infinite ease-in-out;
+        }
+        .eq-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 8px;  animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { height: 15px; animation-delay: 0.4s; }
+
+        .paused .eq-bar {
+            animation: none !important;
+            height: 4px !important;
+        }
+
+        @keyframes eq {
+            0%, 100% { height: 6px; }
+            50% { height: 20px; }
+        }
+
+        .text-shadow-hero {
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden bg-[#1A1715] text-[#E6D9CE]">
+
+    <!-- Delicate Snowflake Canvas -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- Top Floating Navbar (20% opacity on Desktop by default, hover/click to 100%) -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-500 opacity-100 md:opacity-20 md:hover:opacity-100" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center bg-[#1A1715]/80 border border-white/10 rounded-b-2xl shadow-lg mt-0 md:mt-2">
+            <a href="#" class="font-serif text-xl tracking-widest font-light text-champagne-100">
+                Yoshio <span class="text-champagne-300">&amp;</span> WeiTzu
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm tracking-wider text-champagne-200">
+                <a href="#story" class="hover:text-champagne-400 transition-colors" data-i18n="nav_story">我們的故事</a>
+                <a href="#schedule" class="hover:text-champagne-400 transition-colors" data-i18n="nav_schedule">婚禮流程</a>
+                <a href="#gallery" class="hover:text-champagne-400 transition-colors" data-i18n="nav_gallery">婚紗相冊</a>
+                <a href="#venue" class="hover:text-champagne-400 transition-colors" data-i18n="nav_venue">宴客地點</a>
+                <a href="#rsvp" class="hover:text-champagne-400 transition-colors" data-i18n="nav_rsvp">出席回覆</a>
+            </nav>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center space-x-2">
+                <div class="bg-black/40 border border-white/15 p-1 rounded-full flex text-xs font-serif">
+                    <button id="lang-zh" onclick="setLanguage('zh')" class="px-3 py-1 rounded-full transition-all duration-300 bg-champagne-600 text-white shadow-xs">繁中</button>
+                    <button id="lang-ja" onclick="setLanguage('ja')" class="px-3 py-1 rounded-full transition-all duration-300 text-champagne-200 hover:text-white">日本語</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Audio Equalizer Toggle -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <button id="audio-toggle-btn" onclick="toggleAudio()" class="p-3.5 bg-[#1A1715]/90 border border-white/15 rounded-full shadow-lg text-champagne-200 hover:text-white hover:scale-105 transition-all flex items-center space-x-2 group">
+            <div id="eq-visualizer" class="flex items-end space-x-0.5 h-5 px-1 paused">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+            </div>
+            <span class="text-xs font-serif hidden group-hover:inline-block pr-1 transition-all" id="audio-label" data-i18n="music_label">BGM</span>
+        </button>
+        <audio id="bg-music" loop preload="auto">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112188.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Floating Quick RSVP Action Button -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <a href="#rsvp" class="flex items-center space-x-2 px-5 py-3 bg-champagne-700/90 text-white rounded-full shadow-xl hover:bg-champagne-800 transition-all text-sm tracking-wider animate-float border border-white/20">
+            <i data-lucide="mail-check" class="w-4 h-4"></i>
+            <span data-i18n="float_rsvp">RSVP</span>
+        </a>
+    </div>
+
+    <!-- SECTION 1: HERO COVER IMAGE WITH OVERLAY CONTENT -->
+    <section class="relative w-full h-[90vh] md:h-screen pt-20 px-4 overflow-hidden flex items-end justify-center pb-6 md:pb-8">
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.postimg.cc/8kd5xJRk/IMG-0748.jpg" class="w-full h-full object-cover object-center" alt="Yoshio & WeiTzu Wedding Cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1715] via-black/30 to-transparent"></div>
+        </div>
+
+        <!-- HERO CONTENT: DESKTOP SHIFTED DOWN TO FEET LEVEL TO ENSURE FACES ARE COMPLETELY UNBLOCK -->
+        <div class="relative z-10 text-center max-w-xs md:max-w-lg mx-auto space-y-2 md:space-y-2.5 animate-fade-in-up transform scale-90 md:scale-95 origin-bottom pb-2 md:pb-2 md:translate-y-28">
+            <div class="inline-block px-3 py-0.5 md:px-3.5 md:py-0.5 rounded-full bg-black/40 border border-white/20 text-[9px] md:text-[11px] tracking-widest text-champagne-100 uppercase backdrop-blur-md shadow-xs">
+                <span data-i18n="hero_subtitle">WEDDING INVITATION</span>
+            </div>
+
+            <div class="space-y-0.5 text-white">
+                <h1 class="text-2xl md:text-4xl font-serif tracking-wide text-shadow-hero font-light">
+                    Yoshio <span class="text-xl md:text-3xl italic font-normal text-champagne-200">&amp;</span> WeiTzu
+                </h1>
+                <p class="text-[11px] md:text-xs font-serif tracking-widest text-champagne-200 font-light" data-i18n="hero_invite_line">
+                    誠摯邀請您見證我們的幸福時刻
+                </p>
+            </div>
+
+            <div class="space-y-0.5 font-serif text-white">
+                <div class="text-lg md:text-xl tracking-widest font-semibold text-champagne-100">
+                    2026 . 12 . 13 <span class="text-[10px] md:text-xs font-light">SUN</span> <span class="text-xs md:text-xs font-light text-champagne-300 ml-1">PM 12:30</span>
+                </div>
+                <div class="text-[11px] md:text-xs font-light flex items-center justify-center space-x-1 text-champagne-200">
+                    <i data-lucide="map-pin" class="w-3 h-3 md:w-3.5 md:h-3.5 text-champagne-200"></i>
+                    <span data-i18n="hero_venue_name">台中市役所 (Taichung Shiyakusho)</span>
+                </div>
+            </div>
+
+            <!-- COMPACT COUNTDOWN TIMER (DESKTOP & MOBILE TAILORED) -->
+            <div class="p-2.5 md:p-3 rounded-2xl max-w-[260px] md:max-w-[290px] mx-auto bg-black/40 border border-white/15 backdrop-blur-md shadow-lg">
+                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-champagne-200 mb-1.5 md:mb-1.5 font-serif font-light" data-i18n="countdown_title">
+                    - 距離婚禮典禮倒數 -
+                </div>
+                <div class="grid grid-cols-4 gap-1 md:gap-1.5 text-center">
+                    <div class="p-1 md:p-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <span id="days" class="block text-base md:text-base font-serif text-white font-light">00</span>
+                        <span class="text-[7px] md:text-[8px] text-champagne-300 tracking-wider uppercase" data-i18n="unit_days">DAYS</span>
+                    </div>
+                    <div class="p-1 md:p-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <span id="hours" class="block text-base md:text-base font-serif text-white font-light">00</span>
+                        <span class="text-[7px] md:text-[8px] text-champagne-300 tracking-wider uppercase" data-i18n="unit_hours">HOURS</span>
+                    </div>
+                    <div class="p-1 md:p-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <span id="minutes" class="block text-base md:text-base font-serif text-white font-light">00</span>
+                        <span class="text-[7px] md:text-[8px] text-champagne-300 tracking-wider uppercase" data-i18n="unit_mins">MINS</span>
+                    </div>
+                    <div class="p-1 md:p-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <span id="seconds" class="block text-base md:text-base font-serif text-white font-light">00</span>
+                        <span class="text-[7px] md:text-[8px] text-champagne-300 tracking-wider uppercase" data-i18n="unit_secs">SECS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a href="#rsvp" class="inline-flex items-center space-x-1 px-5 py-2 md:px-5 md:py-2 bg-champagne-700/90 hover:bg-champagne-800 text-white rounded-full transition-all duration-300 shadow-lg text-[11px] md:text-xs tracking-widest font-serif border border-white/20 backdrop-blur-sm">
+                    <span data-i18n="hero_rsvp_btn">填寫出席回覆 ↓</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: GROOM & BRIDE CARDS -->
+    <section id="story" class="py-20 px-4 relative reveal">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel p-8 md:p-14 rounded-3xl relative overflow-hidden shadow-xl border border-champagne-200/20">
+                
+                <div class="text-center space-y-6">
+                    <div class="space-y-1">
+                        <h2 class="text-3xl md:text-4xl font-serif text-champagne-100 tracking-wider" data-i18n="section_story_title">我們的故事</h2>
+                        <span class="text-champagne-400 font-serif italic text-lg tracking-widest block" data-i18n="story_subtitle">Our Story</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif text-champagne-200 tracking-wider font-light" data-i18n="story_title">
+                        攜手邁向人生的下一個章節
+                    </h3>
+
+                    <div class="w-12 h-0.5 bg-champagne-600/60 mx-auto my-4"></div>
+
+                    <p class="text-sm md:text-lg leading-relaxed text-champagne-200 font-light max-w-2xl mx-auto space-y-3 px-2 md:px-0 tracking-wide" data-i18n="story_content">
+                        從相知、相戀到決定攜手共度餘生，<br>
+                        感謝一路以來有您的陪伴與祝福。<br><br>
+                        在這溫馨的歲月裡，我們希望邀請最親近的家人與摯友，<br>
+                        一同在充滿歷史韻味與浪漫氛圍的古典建築中，<br>
+                        分享我們的喜悅，共度這段珍貴溫馨的時光。
+                    </p>
+
+                    <div class="pt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-2xl mx-auto">
+                        <div class="text-center p-5 bg-black/30 rounded-2xl border border-white/10 shadow-xs">
+                            <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 ring-2 ring-champagne-400/40 shadow-md">
+                                <img src="https://i.postimg.cc/3wSsk5zX/IMG-0768.jpg" alt="Groom Yoshio" class="w-full h-full object-cover object-top transition-transform hover:scale-105 duration-500">
+                            </div>
+                            <span class="block font-serif text-champagne-100 text-xl font-medium" data-i18n="groom_name">内野 <span lang="ja" style="font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;">善</span>夫 (Uchino Yoshio)</span>
+                            <span class="block text-xs text-champagne-400 font-serif mt-1 tracking-wider" data-i18n="groom_title">新郎 / Groom</span>
+                        </div>
+                        <div class="text-center p-5 bg-black/30 rounded-2xl border border-white/10 shadow-xs">
+                            <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 ring-2 ring-champagne-400/40 shadow-md">
+                                <img src="https://i.postimg.cc/4xpSF4RW/IMG-0767-xiao.jpg" alt="Bride WeiTzu" class="w-full h-full object-cover object-[center_0%] transition-transform hover:scale-105 duration-500">
+                            </div>
+                            <span class="block font-serif text-champagne-100 text-xl font-medium" data-i18n="bride_name">林韋慈 (Lin Wei Tzu)</span>
+                            <span class="block text-xs text-champagne-400 font-serif mt-1 tracking-wider" data-i18n="bride_title">新娘 / Bride</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WEDDING SCHEDULE TIMELINE -->
+    <section id="schedule" class="py-16 px-4 relative reveal">
+        <div class="max-w-3xl mx-auto">
+            <div class="glass-panel p-6 md:p-10 rounded-3xl border border-champagne-400/30 shadow-xl bg-black/40">
+                <div class="text-center mb-12 space-y-2">
+                    <span class="text-champagne-400 font-serif italic text-base tracking-widest" data-i18n="schedule_subtitle">Event Schedule</span>
+                    <h2 class="text-2xl md:text-3xl font-serif text-champagne-100 tracking-wider" data-i18n="schedule_title">婚禮流程</h2>
+                    <p class="text-xs text-champagne-300 font-light" data-i18n="schedule_date">2026年12月13日 星期日</p>
+                </div>
+
+                <div class="relative border-l-2 border-champagne-600/60 ml-4 md:ml-1/2 md:-translate-x-px space-y-10">
+                    
+                    <div class="relative pl-8 md:pl-0 md:flex items-center group">
+                        <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-champagne-500 border-4 border-[#241F1C] group-hover:scale-125 transition-transform"></div>
+                        <div class="md:w-1/2 md:pr-10 md:text-right">
+                            <span class="inline-block px-3 py-1 rounded-md bg-champagne-800/90 text-champagne-100 text-xs font-semibold font-serif mb-1 border border-white/10">AM 11:30 - 12:30</span>
+                            <h3 class="text-lg font-serif text-champagne-100 font-medium" data-i18n="event_1_title">迎賓入席</h3>
+                            <p class="text-xs text-champagne-300 font-light mt-1" data-i18n="event_1_desc">賓客簽到、迎賓雞尾酒與相片區交流</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-0 md:flex items-center group">
+                        <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-champagne-500 border-4 border-[#241F1C] group-hover:scale-125 transition-transform"></div>
+                        <div class="md:w-1/2 md:ml-auto md:pl-10">
+                            <span class="inline-block px-3 py-1 rounded-md bg-champagne-800/90 text-champagne-100 text-xs font-semibold font-serif mb-1 border border-white/10">PM 12:30</span>
+                            <h3 class="text-lg font-serif text-champagne-100 font-medium" data-i18n="event_2_title">婚宴開始 新人進場</h3>
+                            <p class="text-xs text-champagne-300 font-light mt-1" data-i18n="event_2_desc">新人進場、交換結婚戒指與親友祝福</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-0 md:flex items-center group">
+                        <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-champagne-500 border-4 border-[#241F1C] group-hover:scale-125 transition-transform"></div>
+                        <div class="md:w-1/2 md:pr-10 md:text-right">
+                            <span class="inline-block px-3 py-1 rounded-md bg-champagne-800/90 text-champagne-100 text-xs font-semibold font-serif mb-1 border border-white/10">PM 13:00</span>
+                            <h3 class="text-lg font-serif text-champagne-100 font-medium" data-i18n="event_3_title">午宴餐會</h3>
+                            <p class="text-xs text-champagne-300 font-light mt-1" data-i18n="event_3_desc">品嚐精緻佳餚，分享喜悅與祝福</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-0 md:flex items-center group">
+                        <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-champagne-500 border-4 border-[#241F1C] group-hover:scale-125 transition-transform"></div>
+                        <div class="md:w-1/2 md:ml-auto md:pl-10">
+                            <span class="inline-block px-3 py-1 rounded-md bg-champagne-800/90 text-champagne-100 text-xs font-semibold font-serif mb-1 border border-white/10">PM 14:30 - 15:00</span>
+                            <h3 class="text-lg font-serif text-champagne-100 font-medium" data-i18n="event_4_title">合照留念 送客</h3>
+                            <p class="text-xs text-champagne-300 font-light mt-1" data-i18n="event_4_desc">與親朋好友合照，留存美好的永恆回憶</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SLOW SLIDING CONTINUOUS GALLERY (Below Schedule) -->
+    <section id="gallery" class="py-20 relative reveal overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10 space-y-1">
+                <h2 class="text-3xl md:text-4xl font-serif text-champagne-100 tracking-wider" data-i18n="gallery_title">婚紗相冊</h2>
+                <span class="text-champagne-400 font-serif italic text-lg tracking-widest block" data-i18n="gallery_subtitle">Gallery</span>
+                <p class="text-xs text-champagne-300 font-light pt-1" data-i18n="gallery_scroll_hint">（滑鼠懸停或觸控可暫停，點擊放大查看大圖）</p>
+            </div>
+        </div>
+
+        <div class="w-full overflow-hidden py-4">
+            <div class="animate-marquee space-x-5 md:space-x-8 px-4">
+                
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/LXHMgTXs/IMG-0738.jpg')">
+                    <img src="https://i.postimg.cc/LXHMgTXs/IMG-0738.jpg" alt="Wedding Photo 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/Px2nWwpY/IMG-0747.jpg')">
+                    <img src="https://i.postimg.cc/Px2nWwpY/IMG-0747.jpg" alt="Wedding Photo 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/h4ZtkvMR/IMG-0748.jpg')">
+                    <img src="https://i.postimg.cc/h4ZtkvMR/IMG-0748.jpg" alt="Wedding Photo 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/4dBR697p/IMG-0749.jpg')">
+                    <img src="https://i.postimg.cc/4dBR697p/IMG-0749.jpg" alt="Wedding Photo 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/k4fPQb6Y/IMG-0750.jpg')">
+                    <img src="https://i.postimg.cc/k4fPQb6Y/IMG-0750.jpg" alt="Wedding Photo 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/wv0YXmy0/IMG-0752.jpg')">
+                    <img src="https://i.postimg.cc/wv0YXmy0/IMG-0752.jpg" alt="Wedding Photo 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/gJSGbtVg/IMG-0754.jpg')">
+                    <img src="https://i.postimg.cc/gJSGbtVg/IMG-0754.jpg" alt="Wedding Photo 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/T11MC3nR/IMG-0755.jpg')">
+                    <img src="https://i.postimg.cc/T11MC3nR/IMG-0755.jpg" alt="Wedding Photo 8" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/SRP05bGQ/IMG-0756.jpg')">
+                    <img src="https://i.postimg.cc/SRP05bGQ/IMG-0756.jpg" alt="Wedding Photo 9" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/sxLF8CJp/IMG-0759.jpg')">
+                    <img src="https://i.postimg.cc/sxLF8CJp/IMG-0759.jpg" alt="Wedding Photo 10" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/gj795bKh/IMG-0761.jpg')">
+                    <img src="https://i.postimg.cc/gj795bKh/IMG-0761.jpg" alt="Wedding Photo 11" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/Qt4jZYQ6/IMG-0762.jpg')">
+                    <img src="https://i.postimg.cc/Qt4jZYQ6/IMG-0762.jpg" alt="Wedding Photo 12" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/wvf9Y4X4/IMG-0763.jpg')">
+                    <img src="https://i.postimg.cc/wvf9Y4X4/IMG-0763.jpg" alt="Wedding Photo 13" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/j5gRY3Hn/IMG-0764.jpg')">
+                    <img src="https://i.postimg.cc/j5gRY3Hn/IMG-0764.jpg" alt="Wedding Photo 14" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/Cxs0hXhN/IMG-0744.jpg')">
+                    <img src="https://i.postimg.cc/Cxs0hXhN/IMG-0744.jpg" alt="Wedding Photo 15" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+
+                <!-- Duplicate Photos for Infinite Seamless Carousel Loop -->
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/LXHMgTXs/IMG-0738.jpg')">
+                    <img src="https://i.postimg.cc/LXHMgTXs/IMG-0738.jpg" alt="Wedding Photo 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/Px2nWwpY/IMG-0747.jpg')">
+                    <img src="https://i.postimg.cc/Px2nWwpY/IMG-0747.jpg" alt="Wedding Photo 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/h4ZtkvMR/IMG-0748.jpg')">
+                    <img src="https://i.postimg.cc/h4ZtkvMR/IMG-0748.jpg" alt="Wedding Photo 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/4dBR697p/IMG-0749.jpg')">
+                    <img src="https://i.postimg.cc/4dBR697p/IMG-0749.jpg" alt="Wedding Photo 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/k4fPQb6Y/IMG-0750.jpg')">
+                    <img src="https://i.postimg.cc/k4fPQb6Y/IMG-0750.jpg" alt="Wedding Photo 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/wv0YXmy0/IMG-0752.jpg')">
+                    <img src="https://i.postimg.cc/wv0YXmy0/IMG-0752.jpg" alt="Wedding Photo 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/gJSGbtVg/IMG-0754.jpg')">
+                    <img src="https://i.postimg.cc/gJSGbtVg/IMG-0754.jpg" alt="Wedding Photo 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                <div class="group relative w-64 md:w-80 aspect-[3/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-champagne-200/60" onclick="openLightbox('https://i.postimg.cc/T11MC3nR/IMG-0755.jpg')">
+                    <img src="https://i.postimg.cc/T11MC3nR/IMG-0755.jpg" alt="Wedding Photo 8" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: VENUE & LOCATION MAP -->
+    <section id="venue" class="py-20 px-4 bg-black/30 relative reveal">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 space-y-1">
+                <h2 class="text-3xl md:text-4xl font-serif text-champagne-100 tracking-wider" data-i18n="venue_title">宴客地點</h2>
+                <span class="text-champagne-400 font-serif italic text-lg tracking-widest block" data-i18n="venue_subtitle">The Venue</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="glass-panel p-8 rounded-3xl space-y-6 border border-white/10 shadow-xl">
+                    <div>
+                        <span class="px-3 py-1 bg-champagne-800/80 text-champagne-200 text-xs rounded-full font-serif border border-white/10" data-i18n="venue_tag">百年歷史古蹟建築</span>
+                        <h3 class="text-2xl md:text-3xl font-serif text-champagne-100 mt-2 font-semibold" data-i18n="venue_name_full">台中市役所</h3>
+                    </div>
+
+                    <p class="text-sm text-champagne-200 font-light leading-relaxed" data-i18n="venue_desc">
+                        台中市役所興建於日治時期，為優雅的巴洛克式古典建築。帶著世紀歷史的沉澱與文藝氛圍，為我們的特別日子增添浪漫優雅的色彩。
+                    </p>
+
+                    <div class="space-y-3 font-serif text-sm">
+                        <div class="flex items-start space-x-3 text-champagne-200">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-champagne-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="font-semibold block" data-i18n="venue_address_label">地址：</span>
+                                <span data-i18n="venue_address">台中市西區民權路97號</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 text-champagne-200">
+                            <i data-lucide="car" class="w-5 h-5 text-champagne-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="font-semibold block" data-i18n="venue_parking_label">交通與停車：</span>
+                                <span data-i18n="venue_parking">周邊設有府後街地下停車場與周邊收費停車格，距台中火車站步行約10分鐘。</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://maps.google.com/?q=台中市役所" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-champagne-700 text-white rounded-xl hover:bg-champagne-800 transition-all text-sm font-serif tracking-wider shadow-sm border border-white/10">
+                            <i data-lucide="navigation" class="w-4 h-4"></i>
+                            <span data-i18n="btn_google_maps">開啟 Google 地圖</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-white/10 relative group h-80 md:h-full min-h-[340px]">
+                    <img src="https://i.postimg.cc/htmRG0Tn/tai-zhong-shi-yi-suo.jpg" alt="台中市役所 Taichung Shiyakusho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1715]/90 via-transparent to-transparent flex items-end p-6">
+                        <span class="text-white font-serif text-lg tracking-wider" data-i18n="venue_photo_caption">台中市役所 Taichung Shiyakusho</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: RSVP FORM WITH HIDDEN IFRAME SUBMISSION -->
+    <section id="rsvp" class="py-20 px-4 relative reveal">
+        <div class="max-w-3xl mx-auto">
+            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+                <div class="text-center mb-10 space-y-1">
+                    <h2 class="text-3xl md:text-4xl font-serif text-champagne-100 tracking-wider" data-i18n="rsvp_title">出席回覆</h2>
+                    <span class="text-champagne-400 font-serif italic text-lg tracking-widest block" data-i18n="rsvp_subtitle">RSVP</span>
+                    <p class="text-sm text-champagne-300 font-light pt-1" data-i18n="rsvp_deadline">請於 2026年11月13日 前填寫完畢</p>
+                </div>
+
+                <script>
+                    var submitted = false;
+                    function handleFormSubmit(form) {
+                        submitted = true;
+                        document.getElementById('rsvp-modal').classList.remove('hidden');
+                        return true;
+                    }
+                </script>
+
+                <iframe name="hidden_google_iframe" id="hidden_google_iframe" class="hidden" style="display:none;"></iframe>
+
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLSeDO3UVNSI1tbqelCqnOHf_QGFsu7dDxEVnLwncmbIs7t6vlg/formResponse" method="POST" target="hidden_google_iframe" onsubmit="return handleFormSubmit(this);" class="space-y-6">
+                    
+                    <div>
+                        <label class="block text-sm font-serif text-champagne-200 mb-3 font-semibold" data-i18n="field_attendance">
+                            出席狀況 / ご出席状況 <span class="text-rose-400">*</span>
+                        </label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="relative flex items-center justify-center p-4 rounded-xl border border-white/10 bg-black/30 cursor-pointer hover:border-champagne-400 transition-all shadow-xs">
+                                <input type="radio" name="entry.379486837" value="出席" checked class="accent-champagne-500 mr-2.5 w-4 h-4">
+                                <span class="font-serif text-champagne-100 text-base font-medium" data-i18n="opt_attend">出席 / ご出席</span>
+                            </label>
+                            <label class="relative flex items-center justify-center p-4 rounded-xl border border-white/10 bg-black/30 cursor-pointer hover:border-champagne-400 transition-all shadow-xs">
+                                <input type="radio" name="entry.379486837" value="遺憾無法出席" class="accent-champagne-500 mr-2.5 w-4 h-4">
+                                <span class="font-serif text-champagne-100 text-base font-medium" data-i18n="opt_absent">遺憾無法出席 / ご欠席</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_name">
+                            您的姓名 / お名前 <span class="text-rose-400">*</span>
+                        </label>
+                        <input type="text" name="entry.788226621" required class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-white font-serif" placeholder="">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_phone">
+                                聯絡電話 / 電話番号 <span class="text-rose-400">*</span>
+                            </label>
+                            <input type="tel" name="entry.827963279" required class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-white font-serif" placeholder="">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_email">
+                                電子信箱 / メールアドレス <span class="text-rose-400">*</span>
+                            </label>
+                            <input type="email" name="entry.671448847" required class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-white font-serif" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_count">
+                                出席人數 (含本人) / 同伴人数 (ご本人含む)
+                            </label>
+                            <input type="text" name="entry.355682583" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-white font-serif" placeholder="例：1位">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_child_seats">
+                                兒童座椅需求 / お子様用椅子
+                            </label>
+                            <div class="flex items-center space-x-6 pt-2">
+                                <label class="inline-flex items-center text-champagne-100 font-serif cursor-pointer">
+                                    <input type="radio" name="entry.574624143" value="不需要" checked class="accent-champagne-500 mr-2">
+                                    <span data-i18n="opt_no_need">不需要</span>
+                                </label>
+                                <label class="inline-flex items-center text-champagne-100 font-serif cursor-pointer">
+                                    <input type="radio" name="entry.574624143" value="需要" class="accent-champagne-500 mr-2">
+                                    <span data-i18n="opt_need">需要</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_diet">
+                            飲食需求 / お食事のご要望
+                        </label>
+                        <div class="flex items-center space-x-6 pt-1">
+                            <label class="inline-flex items-center text-champagne-100 font-serif cursor-pointer">
+                                <input type="radio" name="entry.1864439697" value="葷食" checked class="accent-champagne-500 mr-2">
+                                <span data-i18n="opt_meat">葷食</span>
+                            </label>
+                            <label class="inline-flex items-center text-champagne-100 font-serif cursor-pointer">
+                                <input type="radio" name="entry.1864439697" value="素食" class="accent-champagne-500 mr-2">
+                                <span data-i18n="opt_veg">素食</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-serif text-champagne-200 mb-2 font-semibold" data-i18n="field_blessing">
+                            給新人的祝福 / 新郎新婦へのメッセージ
+                        </label>
+                        <textarea name="entry.1581945359" rows="3" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-white font-serif" placeholder=""></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full py-4 bg-champagne-700 text-white font-serif tracking-widest rounded-xl hover:bg-champagne-800 transition-all duration-300 shadow-md uppercase text-sm flex items-center justify-center space-x-2 border border-white/10">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span data-i18n="btn_submit">確認送出 / 送信</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-4 text-center border-t border-white/10 font-serif text-champagne-300">
+        <p class="text-xl font-light">Yoshio &amp; WeiTzu</p>
+        <p class="text-xs tracking-widest text-champagne-400 mt-2">2026.12.13 Taichung, Taiwan</p>
+        <p class="text-[10px] text-champagne-500 mt-6 tracking-wider">Designed with Elegance</p>
+    </footer>
+
+    <!-- LIGHTBOX PREVIEW MODAL -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white hover:text-champagne-300 transition-colors">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- CONFIRMATION TOAST MODAL -->
+    <div id="rsvp-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-8 rounded-3xl max-w-md w-full text-center space-y-6 border border-white/15 shadow-2xl animate-fade-in-up">
+            <div class="w-16 h-16 bg-champagne-800/80 rounded-full flex items-center justify-center mx-auto text-champagne-300 border border-white/10">
+                <i data-lucide="heart" class="w-8 h-8 fill-champagne-400 text-champagne-400"></i>
+            </div>
+            <h3 class="text-2xl font-serif text-champagne-100" data-i18n="modal_success_title">非常感謝您的回覆！</h3>
+            <p class="text-sm text-champagne-200 font-light leading-relaxed" data-i18n="modal_success_msg">
+                我們已經收到您的出席資訊，期待在 2026年12月13日 與您一同分享這份美好的喜悅！
+            </p>
+            <button onclick="closeRSVPModal()" class="w-full py-3 bg-champagne-700 text-white rounded-xl font-serif tracking-widest hover:bg-champagne-800 transition-all border border-white/10">
+                <span data-i18n="modal_close">關閉</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        lucide.createIcons();
+
+        /* Fine Subtle Snowflakes Animation Canvas */
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let flakes = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Snowflake {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.radius = Math.random() * 2 + 0.8;
+                this.speedY = Math.random() * 0.5 + 0.25;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.opacity = Math.random() * 0.5 + 0.25;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.15;
+                if (this.y > canvas.height + 10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#FFFFFF';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.shadowBlur = 3;
+                ctx.shadowColor = '#D5C0B0';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            flakes.push(new Snowflake());
+        }
+
+        function animateSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            flakes.forEach(f => {
+                f.update();
+                f.draw();
+            });
+            requestAnimationFrame(animateSnow);
+        }
+        animateSnow();
+
+        /* Countdown Timer */
+        const weddingDate = new Date('2026-12-13T12:30:00').getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* Lightbox functions */
+        function openLightbox(src) {
+            const modal = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.add('hidden');
+        }
+
+        /* Audio Player Toggle */
+        let isPlaying = false;
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const visualizer = document.getElementById('eq-visualizer');
+            const label = document.getElementById('audio-label');
+            if (isPlaying) {
+                audio.pause();
+                visualizer.classList.add('paused');
+                label.innerText = "BGM";
+            } else {
+                audio.play().then(() => {
+                    visualizer.classList.remove('paused');
+                    label.innerText = "Playing";
+                }).catch(e => {
+                    console.log("Audio play error:", e);
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Allow initial user interaction to trigger BGM on mobile/desktop browsers
+        document.addEventListener('click', function initAudio() {
+            const audio = document.getElementById('bg-music');
+            if (audio && audio.paused && !isPlaying) {
+                audio.load();
+            }
+        }, { once: true });
+
+        /* Form Submitted Modal Trigger */
+        function onFormSubmitted() {
+            document.getElementById('rsvp-modal').classList.remove('hidden');
+        }
+
+        function closeRSVPModal() {
+            document.getElementById('rsvp-modal').classList.add('hidden');
+        }
+
+        /* Bilingual Dictionary */
+        const i18nData = {
+            zh: {
+                nav_story: "我們的故事",
+                nav_schedule: "婚禮流程",
+                nav_gallery: "婚紗相冊",
+                nav_venue: "宴客地點",
+                nav_rsvp: "出席回覆",
+                music_label: "BGM",
+                float_rsvp: "RSVP",
+                hero_subtitle: "WEDDING INVITATION",
+                hero_invite_line: "誠摯邀請您見證我們的幸福時刻",
+                hero_venue_name: "台中市役所 (Taichung Shiyakusho)",
+                groom_name: "内野 善夫 (Uchino Yoshio)",
+                groom_title: "新郎 / Groom",
+                bride_name: "林韋慈 (Lin Wei Tzu)",
+                bride_title: "新娘 / Bride",
+                countdown_title: "- 距離婚禮典禮倒數 -",
+                unit_days: "DAYS",
+                unit_hours: "HOURS",
+                unit_mins: "MINS",
+                unit_secs: "SECS",
+                hero_rsvp_btn: "填寫出席回覆 ↓",
+                section_story_title: "我們的故事",
+                story_subtitle: "Our Story",
+                story_title: "攜手邁向人生的下一個章節",
+                story_content: "從相知、相戀到決定攜手共度餘生，<br>感謝一路以來有您的陪伴與祝福。<br><br>在這溫馨的歲月裡，我們希望邀請最親近的家人與摯友，<br>一同在充滿歷史韻味與浪漫氛圍的古典建築中，<br>分享我們的喜悅，共度這段珍貴溫馨的時光。",
+                schedule_subtitle: "Event Schedule",
+                schedule_title: "婚禮流程",
+                schedule_date: "2026年12月13日 星期日",
+                event_1_title: "迎賓入席",
+                event_1_desc: "賓客簽到、迎賓雞尾酒與相片區交流",
+                event_2_title: "婚宴開始 新人進場",
+                event_2_desc: "新人進場、交換結婚戒指與親友祝福",
+                event_3_title: "午宴餐會",
+                event_3_desc: "品嚐精緻佳餚，分享喜悅與祝福",
+                event_4_title: "合照留念 送客",
+                event_4_desc: "與親朋好友合照，留存美好的永恆回憶",
+                gallery_subtitle: "Gallery",
+                gallery_title: "婚紗相冊",
+                gallery_scroll_hint: "（滑鼠懸停或觸控可暫停，點擊放大查看大圖）",
+                venue_subtitle: "The Venue",
+                venue_title: "宴客地點",
+                venue_tag: "百年歷史古蹟建築",
+                venue_name_full: "台中市役所",
+                venue_desc: "台中市役所興建於日治時期，為優雅的巴洛克式古典建築。帶著世紀歷史的沉澱與文藝氛圍，為我們的特別日子增添浪漫優雅的色彩。",
+                venue_address_label: "地址：",
+                venue_address: "台中市西區民權路97號",
+                venue_parking_label: "交通與停車：",
+                venue_parking: "周邊設有府後街地下停車場與周邊收費停車格，距台中火車站步行約10分鐘。",
+                btn_google_maps: "開啟 Google 地圖",
+                venue_photo_caption: "台中市役所 Taichung Shiyakusho",
+                rsvp_subtitle: "RSVP",
+                rsvp_title: "出席回覆",
+                rsvp_deadline: "請於 2026年11月13日 前填寫完畢",
+                field_name: "您的姓名 / お名前",
+                field_phone: "聯絡電話 / 電話番号",
+                field_email: "電子信箱 / メールアドレス",
+                field_attendance: "出席狀況 / ご出席状況",
+                opt_attend: "出席 / ご出席",
+                opt_absent: "遺憾無法出席 / ご欠席",
+                field_count: "出席人數 (含本人) / 同伴人数 (ご本人含む)",
+                field_child_seats: "兒童座椅需求 / お子様用椅子",
+                opt_no_need: "不需要",
+                opt_need: "需要",
+                field_diet: "飲食需求 / お食事のご要望",
+                opt_meat: "葷食",
+                opt_veg: "素食",
+                field_blessing: "給新人的祝福 / 新郎新婦へのメッセージ",
+                btn_submit: "確認送出 / 送信",
+                modal_success_title: "非常感謝您的回覆！",
+                modal_success_msg: "我們已經收到您的出席資訊，期待在 2026年12月13日 與您一同分享這份美好的喜悅！",
+                modal_close: "關閉"
+            },
+            ja: {
+                nav_story: "私たちのストーリー",
+                nav_schedule: "披露宴の流れ",
+                nav_gallery: "ウェディングアルバム",
+                nav_venue: "会場のご案内",
+                nav_rsvp: "ご出欠確認",
+                music_label: "BGM",
+                float_rsvp: "RSVP",
+                hero_subtitle: "WEDDING INVITATION",
+                hero_invite_line: "ふたりの特別な門出を、心を込めてご案内いたします",
+                hero_venue_name: "台中市役所 (Taichung Shiyakusho)",
+                groom_name: "内野 <span lang=\"ja\" style=\"font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;\">善</span>夫（うちの よしお）",
+                groom_title: "新郎 / Groom",
+                bride_name: "林 韋慈（リン ウェイツー）",
+                bride_title: "新婦 / Bride",
+                countdown_title: "- 結婚式までのカウントダウン -",
+                unit_days: "DAYS",
+                unit_hours: "HOURS",
+                unit_mins: "MINS",
+                hero_secs: "SECS",
+                hero_rsvp_btn: "ご出欠のご回答はこちら ↓",
+                section_story_title: "私たちのストーリー",
+                story_subtitle: "Our Story",
+                story_title: "ふたりで歩む、これからの新しい章へ",
+                story_content: "出会いから今日まで、温かく見守ってくださった皆様へ心より感謝申し上げます。<br><br>歴史とロマン溢れるクラシカルな空間にて、<br>大切なご家族やご友人の皆様と喜びを分かち合い、<br>温かい時間をともに過ごせますことを楽しみにしております。",
+                schedule_subtitle: "Event Schedule",
+                schedule_title: "披露宴の流れ",
+                schedule_date: "2026年12月13日（日）",
+                event_1_title: "迎賓・ご入場",
+                event_1_desc: "受付、ウェルカムドリンク＆フォトエリアでのご歓談",
+                event_2_title: "披露宴開宴・新郎新婦入場",
+                event_2_desc: "新郎新婦入場、指輪交換および温かい祝福",
+                event_3_title: "ランチ会食",
+                event_3_desc: "美味しいお料理とともに、お祝いのひとときをお楽しみください",
+                event_4_title: "記念撮影・お見送り",
+                event_4_desc: "皆様との記念撮影・感謝を込めてお見送りいたします",
+                gallery_subtitle: "Gallery",
+                gallery_title: "ウェディングアルバム",
+                gallery_scroll_hint: "（ホバー・タップで一時停止、クリックで拡大表示できます）",
+                venue_subtitle: "The Venue",
+                venue_title: "会場のご案内",
+                venue_tag: "100年の歴史を誇るバロック様式建築",
+                venue_name_full: "台中市役所",
+                venue_desc: "日本統治時代に建てられた優雅なバロック調の歴史的建造物。クラシカルで情緒溢れる雰囲気が、私たちの特別な1日を美しく彩ります。",
+                venue_address_label: "住所：",
+                venue_address: "台中市西区民権路97号",
+                venue_parking_label: "交通・駐車場：",
+                venue_parking: "周辺に府後街地下駐車場および有料駐車スペースあり。台中駅から徒歩約10分。",
+                btn_google_maps: "Google Map で見る",
+                venue_photo_caption: "台中市役所 Taichung Shiyakusho",
+                rsvp_subtitle: "RSVP",
+                rsvp_title: "ご出欠確認",
+                rsvp_deadline: "2026年11月13日（金）までにご回答をお願い申し上げます",
+                field_name: "お名前",
+                field_phone: "お電話番号",
+                field_email: "メールアドレス",
+                field_attendance: "ご出席状況",
+                opt_attend: "ご出席",
+                opt_absent: "ご欠席",
+                field_count: "ご出席人数 (ご本人様含む)",
+                field_child_seats: "お子様用椅子の要否",
+                opt_no_need: "不要",
+                opt_need: "必要",
+                field_diet: "お食事のご要望",
+                opt_meat: "一般食（肉・魚）",
+                opt_veg: "ベジタリアン食",
+                field_blessing: "新郎新婦へのメッセージ",
+                btn_submit: "回答を送信する",
+                modal_success_title: "ご回答ありがとうございます！",
+                modal_success_msg: "ご出欠情報を確認いたしました。2026年12月13日に皆様にお会いできることを心より楽しみにしております！",
+                modal_close: "閉じる",
+                placeholder_count: "例：1人"
+            }
+        };
+
+        function setLanguage(lang) {
+            // 同步更新網頁底層語言標籤，確保手機與不同瀏覽器正確強制載入日文專屬漢字（解決「善」字顯示問題）
+            document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'ja';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang] && i18nData[lang][key]) {
+                    el.innerHTML = i18nData[lang][key];
+                }
+            });
+
+            // 更新人數欄位的 placeholder 預填範例
+            const countInput = document.querySelector('input[name="entry.355682583"]');
+            if (countInput) {
+                countInput.placeholder = lang === 'zh' ? '例：1位' : i18nData[lang].placeholder_count;
+            }
+
+            const zhBtn = document.getElementById('lang-zh');
+            const jaBtn = document.getElementById('lang-ja');
+            if (lang === 'zh') {
+                zhBtn.className = "px-3 py-1 rounded-full transition-all duration-300 bg-champagne-600 text-white shadow-xs";
+                jaBtn.className = "px-3 py-1 rounded-full transition-all duration-300 text-champagne-200 hover:text-white";
+            } else {
+                jaBtn.className = "px-3 py-1 rounded-full transition-all duration-300 bg-champagne-600 text-white shadow-xs";
+                zhBtn.className = "px-3 py-1 rounded-full transition-all duration-300 text-champagne-200 hover:text-white";
+            }
+        }
+
+        /* Scroll Reveal Observer */
+        const observerOptions = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
